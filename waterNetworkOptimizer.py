@@ -4075,9 +4075,9 @@ class WaterNetworkOptimizer:
     def initialize_local_search_model_reduced(self):
         self.local_ampl = AMPL()
         self.local_ampl.read(
-            {3: "trn_epigraph_model.mod", 4: "newyork_epigraph_model.mod", 7: "blacksburg_epigraph_model.mod",
-             9: "bakryun_epigraph_model.mod", 13: "farhadgerd_epigraph_model.mod", 24: "kl_epigraph_model.mod"}.get(
-                self.data_number, "exact_reduced_wdn.mod"
+            {3: "model/trn_epigraph_model.mod", 4: "model/newyork_epigraph_model.mod", 7: "model/blacksburg_epigraph_model.mod",
+             9: "model/bakryun_epigraph_model.mod", 13: "model/farhadgerd_epigraph_model.mod", 24: "model/kl_epigraph_model.mod"}.get(
+                self.data_number, "model/exact_reduced_wdn.mod"
             )
         )
         self.local_ampl.read_data(self.data_file)
@@ -5504,22 +5504,22 @@ class WaterNetworkOptimizer:
     # ============================================================
     # RECOVER l FROM y
     # ============================================================
-    def solve_recover_model1(self, y_input, model_name="wdn_recover_model.mod"):
+    def solve_recover_model1(self, y_input):
         ampl = AMPL()
         if self.data_number==3:
-            ampl.read("trn_recover_model.mod")
+            ampl.read("model/trn_recover_model.mod")
         elif self.data_number==4:
-            ampl.read("newyork_recover_model.mod")
+            ampl.read("model/newyork_recover_model.mod")
         elif self.data_number==7:
-            ampl.read("blacksburg_recover_model.mod")
+            ampl.read("model/blacksburg_recover_model.mod")
         elif self.data_number==9:
-            ampl.read("bakryun_recover_model.mod")
+            ampl.read("model/bakryun_recover_model.mod")
         elif self.data_number==13:
-            ampl.read("farhadgerd_recover_model.mod")
+            ampl.read("model/farhadgerd_recover_model.mod")
         elif self.data_number==24:
-            ampl.read("kl_recover_model.mod")
+            ampl.read("model/kl_recover_model.mod")
         else:
-            ampl.read(model_name)
+            ampl.read("model/wdn_recover_model.mod")
 
         ampl.read_data(self.data_file)
 
@@ -5695,8 +5695,8 @@ class WaterNetworkOptimizer:
 
         ampl = AMPL()
         ampl.read(
-            {4: "newyork_epigraph_model.mod", 7: "blacksburg_epigraph_model.mod", 9: "bakryun_epigraph_model.mod", 13: "farhadgerd_epigraph_model.mod", 24: "kl_epigraph_model.mod"}.get(
-                self.data_number, "exact_reduced_wdn.mod"
+            {4: "model/newyork_epigraph_model.mod", 7: "model/blacksburg_epigraph_model.mod", 9: "model/bakryun_epigraph_model.mod", 13: "model/farhadgerd_epigraph_model.mod", 24: "model/kl_epigraph_model.mod"}.get(
+                self.data_number, "model/exact_reduced_wdn.mod"
             )
         )
         ampl.read_data(self.data_file)
@@ -6746,19 +6746,19 @@ class WaterNetworkOptimizer:
         # ============================================================
         ampl = AMPL()
         if self.data_number==3:
-            ampl.read("trn_epigraph_model.mod")
+            ampl.read("model/trn_epigraph_model.mod")
         elif self.data_number == 4:
-            ampl.read("newyork_epigraph_model.mod")
+            ampl.read("model/newyork_epigraph_model.mod")
         elif self.data_number==7:
-            ampl.read("blacksburg_epigraph_model.mod")
+            ampl.read("model/blacksburg_epigraph_model.mod")
         elif self.data_number==9:
-            ampl.read("bakryun_epigraph_model.mod")
+            ampl.read("model/bakryun_epigraph_model.mod")
         elif self.data_number==13:
-            ampl.read("farhadgerd_epigraph_model.mod")
+            ampl.read("model/farhadgerd_epigraph_model.mod")
         elif self.data_number==24:
-            ampl.read("kl_epigraph_model.mod")
+            ampl.read("model/kl_epigraph_model.mod")
         else:
-            ampl.read("exact_reduced_wdn.mod")
+            ampl.read("model/exact_reduced_wdn.mod")
         ampl.read_data(self.data_file)
         # ============================================================
         # Optional warm-start initialization
@@ -7453,14 +7453,14 @@ class WaterNetworkOptimizer:
 
 def _select_model_file(data_number: int) -> str:
     """Return the appropriate AMPL model filename for the given network index."""
-    model_map = {3: "trn_model.mod", 4: "newyork_model.mod", 7: "blacksburg_model.mod", 9: "bakryun_model.mod", 13: "farhadgerd_model.mod", 24: "kl_model.mod"}
-    return model_map.get(data_number, "wdnmodel.mod")
+    model_map = {3: "model/trn_model.mod", 4: "model/newyork_model.mod", 7: "model/blacksburg_model.mod", 9: "model/bakryun_model.mod", 13: "model/farhadgerd_model.mod", 24: "model/kl_model.mod"}
+    return model_map.get(data_number, "model/wdnmodel.mod")
     # return model_map.get(data_number, "exact_reduced_wdn.mod")
 
 if __name__ == "__main__":
     data_number = int(sys.argv[1])
     network_name = DATA_LIST[data_number-1]
-    data_file = f"/home/nitishdumoliya/waterNetwork/wdnd/data/{network_name}.dat"
+    data_file = f"data/{network_name}.dat"
     model_file = _select_model_file(data_number)
 
     print(f"Water Network: {network_name}")
