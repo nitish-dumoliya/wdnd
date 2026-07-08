@@ -1,0 +1,47 @@
+###########################################################################################
+#Cassiolato, G. H., Ruiz-Femenia, J. R., Salcedo-Diaz, R., and Ravagnani, M. A. (2024). “Wa-526
+#ter distribution networks optimization considering uncertainties in the demand nodes.” Water527
+#Resources Management, 38(4), 1479–1495. 
+###########################################################################################
+
+#Node's parameters: elevation, water demand, minumum pressure, maximum pressure
+
+param: nodes:   E     D         P   pmax :=
+1               54    -0.42043         0     0
+2               5     0          25    0
+3               5     0.04344   25    0
+4               4     0.04029   25    0
+5               4.5   0.20860   25    0
+6               4.5   0.04778   25    0
+7               4.5   0.08032   25    0
+;
+
+#Pipe's parameters: start node, end node, length, maximum velocity
+
+param: arcs:                    L                vmax:=
+1                2              2540             3.0
+2                3              350              3.0
+3                4              1140             3.0
+4                5              1430             3.0
+2                6              1020             3.0
+6                7              1410             3.0
+7                5              1710             3.0;
+#param dmin := 0.0254;
+#param dmax := 0.6096;
+
+set Source:= 1 ;
+
+param: pipes:   d       C       R :=
+1               0.10   1.629   145
+2               0.15   4.054   145
+3               0.20   5.769   145
+4               0.25   7.769   145
+5               0.30   9.237   145
+6               0.35   11.012   130
+7               0.40   12.397  130
+8               0.45   15.501  130
+9               0.50   17.696   130
+10              0.60   23.132   130
+;
+
+

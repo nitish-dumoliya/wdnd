@@ -1,0 +1,60 @@
+###########################################################################################
+# PARAMETERS' DEFINITION FOR THE SHAMIR NETWORK from
+# "On the Optimal Design of Water Distribution Networks: a Practical MINLP Approach"
+# by Cristiana Bragalli, Claudia D'Ambrosio, Jon Lee, Andrea Lodi, Paolo Toth
+# Optimization and Engineering, 2011
+###########################################################################################
+# Cristiana Bragalli, DISTART, University of Bologna, cristiana.bragalli@unibo.it
+# Claudia D'Ambrosio, DEIS, University of Bologna, c.dambrosio@unibo.it
+# Jon Lee, IBM T.J. Watson Research Center, jonlee@us.ibm.com
+# Andrea Lodi, DEIS, University of Bologna, andrea.lodi@unibo.it
+# Paolo Toth, DEIS, University of Bologna, paolo.toth@unibo.it
+###########################################################################################
+
+#Node's parameters: elevation, water demand, minumum pressure, maximum pressure
+
+param: nodes:         E             D                P              pmax :=
+       1              210         -0.31109           0              0 
+       2              150           0.02777          30             60
+       3              160           0.02777          30             50
+       4              155           0.03333          30             55
+       5              150           0.075            30             60
+       6              165           0.09167          30             45
+       7              160           0.05555          30             50 ;
+
+
+#Pipe's parameters: start node, end node, length, maximum velocity
+
+param: arcs:                             L                vmax:=
+1                2              1000             2.0
+2                3              1000             2.0
+2                4              1000             2.0
+4                5              1000             2.0
+4                6              1000             2.0
+6                7              1000             2.0
+3                5              1000             2.0
+5                7              1000             2.0 ;
+
+#param dmin := 0.0254;
+#param dmax := 0.6096;
+
+
+set Source:= 1 ;
+
+
+param: pipes:       d                     C      	 R:=
+       1            0.0254                2		130
+       2            0.0508                5		130
+       3            0.0762                8		130
+       4            0.1016               11		130
+       5            0.1524               16		130
+       6            0.2032               23		130
+       7            0.2540               32		130
+       8            0.3048               50		130
+       9            0.3556               60		130
+      10            0.4064               90		130
+      11            0.4572              130		130
+      12            0.5080              170		130
+      13            0.5588              300		130
+      14            0.6096              550		130 ;
+

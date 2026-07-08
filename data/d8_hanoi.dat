@@ -1,0 +1,103 @@
+###########################################################################################
+# PARAMETERS' DEFINITION FOR THE HANOI'S NETWORK from
+# "On the Optimal Design of Water Distribution Networks: a Practical MINLP Approach"
+# by Cristiana Bragalli, Claudia D'Ambrosio, Jon Lee, Andrea Lodi, Paolo Toth
+# Optimization and Engineering, 2011
+###########################################################################################
+# Cristiana Bragalli, DISTART, University of Bologna, cristiana.bragalli@unibo.it
+# Claudia D'Ambrosio, DEIS, University of Bologna, c.dambrosio@unibo.it
+# Jon Lee, IBM T.J. Watson Research Center, jonlee@us.ibm.com
+# Andrea Lodi, DEIS, University of Bologna, andrea.lodi@unibo.it
+# Paolo Toth, DEIS, University of Bologna, paolo.toth@unibo.it
+###########################################################################################
+
+#Node's parameters: elevation, water demand, minumum pressure, maximum pressure
+
+param: nodes:		E	        D	        P	          pmax :=
+ 1               	100         	0              100	          100
+ 2               	0           	0.24722         30		  100
+ 3               	0           	0.23611      	30		  100
+ 4               	0           	0.03611      	30		  100
+ 5               	0           	0.20139      	30		  100
+ 6               	0           	0.27917      	30		  100
+ 7               	0           	0.375        	30		  100
+ 8               	0           	0.15278      	30		  100
+ 9               	0           	0.14583      	30		  100
+ 10              	0           	0.14583      	30		  100
+ 11              	0           	0.13889      	30		  100
+ 12              	0           	0.15556      	30		  100
+ 13              	0           	0.26111      	30		  100
+ 14              	0           	0.17083      	30		  100
+ 15              	0           	0.07778      	30		  100
+ 16              	0           	0.08611      	30		  100
+ 17              	0           	0.24028      	30		  100
+ 18              	0           	0.37361      	30		  100
+ 19              	0           	0.01667      	30		  100
+ 20              	0           	0.35417      	30		  100
+ 21              	0           	0.25833      	30		  100
+ 22              	0           	0.13472      	30		  100
+ 23              	0           	0.29028      	30		  100
+ 24              	0           	0.22778      	30		  100
+ 25              	0           	0.04722      	30		  100
+ 26              	0           	0.25000      	30		  100
+ 27              	0           	0.10278      	30		  100
+ 28              	0           	0.08056      	30		  100
+ 29              	0           	0.10000      	30		  100
+ 30              	0           	0.10000      	30		  100
+ 31              	0           	0.02917     	30		  100
+ 32              	0           	0.22361     	30		  100;
+
+
+#Pipe's parameters: start node, end node, length, maximum velocity
+
+param: arcs:       L          vmax :=
+ 1                2              100         	7.0    
+ 2                3             1350        	7.0 
+ 3                4              900         	3.0 
+ 4                5             1150        	3.0 
+ 5                6             1450        	2.5 
+ 6                7              450         	2.5 
+ 7                8              850         	2.0 
+ 8                9              850         	2.0 
+ 9               10              800         	2.0 
+10               11              950         	2.0 
+11               12             1200        	2.0 
+12               13             3500        	2.0 
+10               14              800         	2.0 
+14               15              500         	2.0 
+15               16              550         	2.0 
+16               17             2730        	2.0 
+17               18             1750        	2.0 
+18               19              800         	3.5 
+19                3              400         	3.5 
+ 3               20             2200        	3.0 
+20               21             1500        	2.0 
+21               22              500         	2.0 
+20               23             2650        	2.0 
+23               24             1230        	3.0 
+24               25             1300        	2.0 
+25               26              850         	2.0 
+26               27              300         	2.0 
+27               16              750         	2.0 
+23               28             1500        	2.0 
+28               29             2000        	2.0 
+29               30             1600        	2.0 
+30               31              150         	2.0 
+31               32              860         	2.0 
+32               25              950         	2.0 ;
+
+#param dmin := 0.3048;
+#param dmax := 1.0160;
+#param d:= 0.0005;
+#param p:=1.852;
+set Source:= 1 ;
+
+#Diameter's parameters: diameter, roughness coefficient, cost
+
+param: pipes:             d         C         R:=
+  1			  0.3048     45.73  130
+  2			  0.4064     70.40  130
+  3			  0.5080     98.39  130
+  4	                  0.6096    129.33  130
+  5			  0.7620    180.75  130
+  6			  1.0160    278.28  130;	
